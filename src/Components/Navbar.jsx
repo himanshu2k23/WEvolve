@@ -38,17 +38,21 @@ const Navbar = () => {
                     <div className={`${isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full'} absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-green-400 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center`}>
                         <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
                             <button className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-gray-100"
-                            onClick={()=>scrollToElement('aboutUs')}
+                                onClick={() => scrollToElement('aboutUs')}
                             >About Us</button>
                             <button className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-gray-100"
-                            onClick={()=>scrollToElement('gettingStarted')}
+                                onClick={() => scrollToElement('gettingStarted')}
                             >Get Started</button>
                             <button className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-gray-100"
-                            onClick={()=>scrollToElement('contactUs')}
+                                onClick={() => scrollToElement('contactUs')}
                             >Contact Us</button>
-                            <button className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-gray-100"
-                            onClick={()=>scrollToElement('contactUs')}
-                            >Helpline</button>
+                            <button className="flex px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-gray-100"
+                                onClick={() => scrollToElement('contactUs')}
+                            >Helpline
+                                <svg viewBox="0 0 1024 1024" className="h-5 w-5 mt-0.5 mr-2" >
+                                    <path d="M854 656q18 0 30 12t12 30v148q0 50-42 50-298 0-512-214t-214-512q0-42 50-42h148q18 0 30 12t12 30q0 78 24 150 8 26-10 44l-82 72q92 192 294 290l66-84q12-12 30-12 10 0 14 2 72 24 150 24z"></path>
+                                </svg>
+                            </button>
                         </div>
 
                         {/* <div className="flex items-center mt-4 lg:mt-0">
