@@ -78,7 +78,7 @@ function ContactUs() {
                             </svg>
                         </span>
 
-                        <h2 className="mt-4 text-lg font-medium text-gray-800">Phone</h2>
+                        <h2 className="mt-4 text-lg font-medium text-gray-800">Helpline</h2>
                         <p className="mt-2 text-gray-500">Available 24/7</p>
                         <p className="mt-2 text-green-500">+1 (555) 000-0000</p>
                     </div>
