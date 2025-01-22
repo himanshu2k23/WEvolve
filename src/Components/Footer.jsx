@@ -4,8 +4,8 @@ export default function Footer() {
   return (
     <footer className="bg-white">
       <div className="container p-6 pt-0 mx-auto">
-        <hr className="h-px my-6 bg-gray-200 border-none" />
-        <div>
+        <hr className="h-px my-2 bg-gray-200 border-none" />
+        {/* <div>
           <h1 className="text-lg font-bold text-center lg:text-2xl">
             The latest mental health news and tips, delivered to your inbox weekly.
           </h1>
@@ -22,9 +22,9 @@ export default function Footer() {
               Subscribe
             </button>
           </div>
-        </div>
+        </div> */}
 
-        <div className='mt-10'>
+        <div className='mt-7'>
           <p className="text-center text-gray-500">© WEvolve 2024 - All rights reserved</p>
         </div>
       </div>
