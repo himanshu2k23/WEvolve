@@ -6,6 +6,7 @@ import Footer from './Components/Footer'
 import Home from './Components/Home'
 import LogIn from './Components/LogIn';
 import SignUp from './Components/SignUp';
+import Index from './Components/Index';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,9 +16,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LogIn/>} />
-        <Route path="/signup" element={<SignUp/>} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/index" element={<Index />} />
       </Routes>
       <Footer />
     </Router>

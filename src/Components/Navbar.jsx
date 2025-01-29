@@ -21,6 +21,7 @@ const Navbar = () => {
         if (targetElement) {
             scrollToElement(targetId);
         }
+        setIsOpen(false)
     }
 
     return (
@@ -51,10 +52,11 @@ const Navbar = () => {
                                         </svg>
                                     )}
                                 </button>
+
                             </div>
                         </div>
 
-                        {/* Mobile Menu open: "block", Menu closed: "hidden" */}
+                        {/* Mobile Menu */}
                         <div className={`${isOpen ? 'translate-x-0 opacity-100' : 'opacity-0 -translate-x-full'} absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white border-b lg:border-none lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center`}>
                             <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8 lg:space-x-4">
                                 <button className="px-4 py-2 text-gray-700 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-emerald-500 after:transition-all after:duration-300"
@@ -66,6 +68,13 @@ const Navbar = () => {
                                 <button className="px-4 py-2 text-gray-700 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-emerald-500 after:transition-all after:duration-300"
                                     onClick={() => navigateThenScroll('contactUs')}
                                 >Contact Us</button>
+                                <button
+                                    onClick={() => navigate('/index')}
+                                    className="px-4 py-2 text-gray-700 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-emerald-500 after:transition-all after:duration-300"
+                                >
+                                    Index
+                                </button>
+
                             </div>
                             <div className="flex flex-col lg:flex-row items-center mt-4 lg:mt-0 lg:ml-8 space-y-2 lg:space-y-0 lg:space-x-3">
                                 {
