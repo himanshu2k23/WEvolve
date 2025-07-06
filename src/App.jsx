@@ -7,6 +7,8 @@ import Home from './Components/Home'
 import LogIn from './Components/LogIn';
 import SignUp from './Components/SignUp';
 import Index from './Components/Index';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,6 +16,7 @@ function App() {
   return (
     <Router>
       <Navbar />
+      <ToastContainer position="top-right" autoClose={3000} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LogIn />} />

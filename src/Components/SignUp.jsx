@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const MultiStepSignup = () => {
     const navigate = useNavigate();
     const [step, setStep] = useState(1);
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
-        // Personal Details
         firstName: '',
         lastName: '',
         email: '',
@@ -14,16 +16,12 @@ const MultiStepSignup = () => {
         age: '',
         gender: '',
 
-        // Mental Health Profile
         primaryConcern: '',
         previousTherapy: '',
         stressLevel: '',
         sleepQuality: '',
-        supportSystem: '',
 
-        // Additional Context
         occupation: '',
-        additionalConcerns: '',
         goalFromTherapy: '',
         availabilityPreference: '',
         communicationStyle: '',
@@ -49,7 +47,6 @@ const MultiStepSignup = () => {
     const togglePasswordVisibility = () => {
         setIsPasswordVisible(!isPasswordVisible);
     };
-
 
     const validateStep = (currentStep) => {
         const newErrors = {};
@@ -91,11 +88,56 @@ const MultiStepSignup = () => {
 
     const prevStep = () => setStep(step - 1);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (validateStep(step)) {
-            console.log(formData);
-            navigate('/onboarding');
+            setIsLoading(true);
+            try {
+                // Prepare the data in the exact format specified
+                const registrationData = {
+                    firstName: formData.firstName,
+                    lastName: formData.lastName,
+                    email: formData.email,
+                    password: formData.password,
+                    age: parseInt(formData.age),
+                    gender: formData.gender,
+                    primaryConcern: formData.primaryConcern,
+                    previousTherapy: formData.previousTherapy,
+                    stressLevel: formData.stressLevel,
+                    sleepQuality: formData.sleepQuality,
+                    occupation: formData.occupation,
+                    goalFromTherapy: formData.goalFromTherapy,
+                    availabilityPreference: formData.availabilityPreference,
+                    communicationStyle: formData.communicationStyle
+                };
+
+                const response = await axios.post(
+                    'https://wevolvebackend.onrender.com/api/register/user',
+                    registrationData
+                );
+
+                // Success notification
+                toast.success('Registration Successful! Redirecting...', {
+                    position: "top-right",
+                    autoClose: 3000,
+                });
+
+                // Navigate to login page
+                setTimeout(() => {
+                    navigate('/login');
+                }, 3000);
+
+            } catch (error) {
+                // Error handling
+                const errorMsg = error.response?.data?.message || 'Registration failed. Please try again.';
+                toast.error(errorMsg, {
+                    position: "top-right",
+                    autoClose: 3000,
+                });
+            } finally {
+                setIsLoading(false);
+            }
         }
     };
 
@@ -143,18 +185,6 @@ const MultiStepSignup = () => {
                             />
                             {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                         </div>
-                        {/* <div>
-                            <label className="block text-sm font-medium text-gray-700">Password</label>
-                            <input
-                                type="password"
-                                name="password"
-                                required
-                                value={formData.password}
-                                onChange={handleChange}
-                                className={`mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
-                            />
-                            {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
-                        </div> */}
                         <div>
                             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                                 Password
@@ -350,8 +380,7 @@ const MultiStepSignup = () => {
                                 required
                                 value={formData.goalFromTherapy}
                                 onChange={handleChange}
-                                className={`mt-1 block w-full px-3
-                                    py-2 border rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 ${errors.goalFromTherapy ? 'border-red-500' : 'border-gray-300'}`}
+                                className={`mt-1 block w-full px-3 py-2 border rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 ${errors.goalFromTherapy ? 'border-red-500' : 'border-gray-300'}`}
                                 rows="3"
                             />
                             {errors.goalFromTherapy && <p className="text-red-500 text-xs mt-1">{errors.goalFromTherapy}</p>}
@@ -403,9 +432,10 @@ const MultiStepSignup = () => {
                             <button
                                 type="button"
                                 onClick={handleSubmit}
-                                className="px-6 py-2 bg-lime-500 text-white rounded-lg hover:bg-lime-600 transition-colors"
+                                disabled={isLoading}
+                                className={`px-6 py-2 bg-lime-500 text-white rounded-lg hover:bg-lime-600 transition-colors ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
                             >
-                                Complete Signup
+                                {isLoading ? 'Submitting...' : 'Complete Signup'}
                             </button>
                         </div>
                     </div>

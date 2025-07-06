@@ -1,7 +1,15 @@
 import React from 'react'
-import {scrollToElement} from '../../Scroll'
+import { scrollToElement } from '../../Scroll'
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Banner() {
+    const navigate = useNavigate();
+
+    const redirectToIndex = () => {
+        navigate('/index');
+    };
+
 
     return (
         < section
@@ -26,17 +34,16 @@ export default function Banner() {
 
                     <div className="mt-8 flex flex-wrap gap-4 text-center">
                         <button
-                            className="block w-full rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-emerald-700 focus:outline-none focus:ring  sm:w-auto"
-                            onClick={()=>scrollToElement('gettingStarted')}
-
+                            className="block w-full rounded bg-emerald-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-emerald-700 focus:outline-none focus:ring sm:w-auto"
+                            onClick={redirectToIndex}
                         >
-                            Get Started
+                            Check-out Our Doctors
                         </button>
 
                         <button
 
                             className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-emerald-600 shadow hover:text-emerald-700 focus:outline-none focus:ring  sm:w-auto"
-                            onClick={()=>scrollToElement('aboutUs')}
+                            onClick={() => scrollToElement('aboutUs')}
                         >
                             About Us
                         </button>
