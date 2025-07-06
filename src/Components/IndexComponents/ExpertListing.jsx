@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ExpertListing = ({ experts, selectedExpert }) => {
   const [filters, setFilters] = useState({
@@ -9,23 +10,23 @@ const ExpertListing = ({ experts, selectedExpert }) => {
     category: selectedExpert || ''
   });
   const [showFilters, setShowFilters] = useState(false);
-  
+
   // First filter experts by category
-  const categoryFilteredExperts = experts.filter(expert => 
+  const categoryFilteredExperts = experts.filter(expert =>
     !filters.category || expert.category === filters.category
   );
-  
+
   // Then derive available options from category-filtered experts
   const allLanguages = [...new Set(categoryFilteredExperts.flatMap(expert => expert.languages))];
   const allExpertise = [...new Set(categoryFilteredExperts.flatMap(expert => expert.expertise))];
   const allGenders = ["male", "female"];
-  
+
   const expertTitle = {
     therapist: "Therapists",
     psychologist: "Psychologists",
     psychiatrist: "Psychiatrists"
   }[selectedExpert] || "Experts";
-  
+
   const toggleFilter = (type, value) => {
     setFilters(prev => {
       const updatedFilters = {
@@ -37,7 +38,7 @@ const ExpertListing = ({ experts, selectedExpert }) => {
       return updatedFilters;
     });
   };
-  
+
   // Apply remaining filters to category-filtered experts
   const filteredExperts = categoryFilteredExperts.filter(expert => {
     const matchesPrice = expert.price >= filters.priceRange.min &&
@@ -48,10 +49,10 @@ const ExpertListing = ({ experts, selectedExpert }) => {
       expert.languages.some(lang => filters.languages.includes(lang));
     const matchesExpertise = filters.expertise.length === 0 ||
       expert.expertise.some(exp => filters.expertise.includes(exp));
-    
+
     return matchesPrice && matchesGender && matchesLanguage && matchesExpertise;
   });
-  
+
   const clearFilters = () => {
     const resetFilters = {
       priceRange: { min: 0, max: 10000 },
@@ -62,11 +63,11 @@ const ExpertListing = ({ experts, selectedExpert }) => {
     };
     setFilters(resetFilters);
   };
-  
+
   useEffect(() => {
     console.log(filters);
   }, [filters]);
-  
+
   useEffect(() => {
     setFilters(prevFilters => ({
       ...prevFilters,
@@ -205,6 +206,12 @@ const ExpertListing = ({ experts, selectedExpert }) => {
 };
 
 const ExpertCard = ({ expert }) => {
+  const navigate = useNavigate();
+
+  const handleBookSession = () => {
+    navigate(`/book/${expert.id}`);
+  };
+
   return (
     <div className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-200 p-5">
       <div className="flex gap-4">
@@ -247,7 +254,10 @@ const ExpertCard = ({ expert }) => {
           <p className="text-sm font-semibold text-gray-900">Next available</p>
           <p className="text-sm font-medium text-red-600">{expert.nextSlot}</p>
         </div>
-        <button className="bg-green-600 text-white px-5 py-2 rounded-xl font-medium hover:bg-green-700 active:bg-green-800 transition-colors duration-200 shadow-sm">
+        <button
+          onClick={handleBookSession}
+          className="bg-green-600 text-white px-5 py-2 rounded-xl font-medium hover:bg-green-700 active:bg-green-800 transition-colors duration-200 shadow-sm"
+        >
           Book Session
         </button>
       </div>

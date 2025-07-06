@@ -127,7 +127,7 @@ const Navbar = () => {
                                             bg-white rounded-lg shadow-lg border border-emerald-100 z-20 
                                             overflow-hidden">
                                             <button
-                                                onClick={() => navigate('/bookings')}
+                                                onClick={() => navigate('/appointments')}
                                                 className="block px-4 py-2.5 text-gray-700 hover:bg-emerald-50 
                                                 hover:text-emerald-600 w-full text-left transition-colors 
                                                 duration-200 flex items-center space-x-3"
@@ -135,7 +135,7 @@ const Navbar = () => {
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                                                 </svg>
-                                                <span>My Bookings</span>
+                                                <span>My Appointments</span>
                                             </button>
                                             <div className="border-t border-emerald-100"></div>
                                             <button
