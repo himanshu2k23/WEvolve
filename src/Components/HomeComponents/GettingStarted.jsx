@@ -37,7 +37,7 @@ const steps = [
 ];
 
 const GettingStarted = () => (
-  <div id='gettingStarted' className="max-w-4xl mx-auto px-4 py-8">
+  <div id='getstarted' className="max-w-4xl mx-auto px-4 py-8">
     <h1 className="text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-4">
       Get <span className=" text-green-500">Started</span> Today!
     </h1>

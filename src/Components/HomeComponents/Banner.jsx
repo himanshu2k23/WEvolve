@@ -43,7 +43,7 @@ export default function Banner() {
                         <button
 
                             className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-emerald-600 shadow hover:text-emerald-700 focus:outline-none focus:ring  sm:w-auto"
-                            onClick={() => scrollToElement('aboutUs')}
+                            onClick={() => scrollToElement('aboutus')}
                         >
                             About Us
                         </button>

@@ -69,7 +69,7 @@ const platformData = [
 
 const OurPlatform = () => {
     return (
-        <section id='aboutUs' className="mt-10">
+        <section id='aboutus' className="mt-10">
             <div className="container px-6 py-4 mx-auto">
                 <div className="max-w-6xl mx-auto px-4 py-8">
                     <h1 className="text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-4">
